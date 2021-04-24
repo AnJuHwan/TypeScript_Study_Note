@@ -14,6 +14,7 @@
 
     private constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
+      //constructor 에 있는것은 할당되면 변경 불가능
     }
 
     static makeMachine(coffeeBeans: number): CoffeeMaker {
@@ -40,4 +41,42 @@
   }
   const maker = CoffeeMaker.makeMachine(32);
   maker.fillCoffeeBeans(32);
+
+  // class User {
+  //   private firstName: string;
+  //   private lastName: string;
+  //   get fullName(): string {
+  //     return `${this.firstName} ${this.lastName}`;
+  //   }
+  //   constructor( firstName: string,  lastName: string) {
+  //     this.firstName = firstName;
+  //     this.lastName = lastName;
+  //   }
+  // } 밑에와 동일한 코드
+
+  class User {
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`;
+    }
+
+    private internalAge = 4;
+    get age(): number {
+      return this.internalAge;
+    }
+    set age(num: number) {
+      if (num < 0) {
+        // 에러
+      }
+      this.internalAge = num;
+    }
+    constructor(private firstName: string, private lastName: string) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+  }
+
+  const user = new User('Steve', 'Jobs');
+  console.log(user.fullName);
+  user.age = 6;
+  console.log(user.fullName);
 }
