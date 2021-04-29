@@ -15,6 +15,7 @@
     private constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
       //constructor 에 있는것은 할당되면 변경 불가능
+      //constructor : 생성자
     }
 
     static makeMachine(coffeeBeans: number): CoffeeMaker {
