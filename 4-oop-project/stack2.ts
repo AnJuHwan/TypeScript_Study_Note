@@ -1,10 +1,10 @@
 {
   /*  ---조건--- 
-1. 배열을 이용하지 않고 구현.
-2. size - 1부터시작
-3. 데이터가 없으면 null 표시
-4. push 데이터 삽입 , pop 데이터 삭제
-*/
+  1. 배열을 이용하지 않고 구현.
+  2. size - 1부터시작
+  3. 데이터가 없으면 null 표시
+  4. push 데이터 삽입 , pop 데이터 삭제
+  */
   interface Stack {
     readonly size: number;
     push(value: string): void;
@@ -20,10 +20,17 @@
     private _size: number = 0;
     private head?: StackNode;
 
+    constructor(private capacity: number) {
+      // capacity : 정해진 사이즈
+    }
+
     get size() {
       return this._size;
     }
     push(value: string) {
+      if (this._size === this.capacity) {
+        throw new Error('Full');
+      }
       const node: StackNode = { value: value, next: this.head };
       this.head = node;
       this._size++;
@@ -42,7 +49,7 @@
     }
   }
 
-  const stack = new StackImpl(); //사이즈 정해주기
+  const stack = new StackImpl(10); //사이즈 정해주기
   stack.push('A 1');
   stack.push('B 2');
   stack.push('C 3');
