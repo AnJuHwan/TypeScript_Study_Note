@@ -15,4 +15,5 @@
 
   type Product = 'cat' | 'dog';
   type NewProdict = Capitalize<Product>; // 'Cat' | 'Dog'
+  // 앞 문자를 대문자로 바꿔줌
 }
